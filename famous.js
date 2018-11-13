@@ -12,6 +12,18 @@ const client = new pg.Client({
 const firstName = process.argv[2];
 const q = `SELECT first_name, last_name, birthdate FROM famous_people WHERE first_name = '${firstName}';`;
 
+function output(result) {
+  for (let i = 0; i < result.rows.length; i++) {
+    let first = result.rows[i].first_name;
+    let last = result.rows[i].last_name;
+    let bod = result.rows[i].birthdate;
+    let year = bod.getFullYear();
+    let month = bod.getMonth();
+    let day = bod.getDate();
+    let out = (i + 1) + ' ' + first + ' ' + last + ', born ' + year + '-' + month + '-' + day
+    console.log(out);
+  }
+}
 client.connect((err) => {
   if (err) {
     return console.error("Connection Error", err);
@@ -21,15 +33,9 @@ client.connect((err) => {
     if (err) {
       return console.error("error running query", err);
     }
-    console.log('Found ' + result.rows.length + ' person(s) by the name ' + "'" + firstName + "'");
-    for (let i = 0; i < result.rows.length; i++) {
-      let first = result.rows[i].first_name;
-      let last = result.rows[i].last_name;
-      let bod = result.rows[i].birthdate;
-      console.log((i + 1) + ' ' + first + ' ' + last + ', born ' + bod);
+    output(result);
 
-    }
-    // console.log('result', result.rows);
+
     client.end();
   });
 });
