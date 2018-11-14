@@ -20,7 +20,7 @@ function output(result) {
     let year = bod.getFullYear();
     let month = bod.getMonth();
     let day = bod.getDate();
-    let out = (i + 1) + ' ' + first + ' ' + last + ', born ' + year + '-' + month + '-' + day
+    let out = (i + 1) + ' ' + first + ' ' + last + ', born ' + year + '-' + month + '-' + day;
     console.log(out);
   }
 }
@@ -34,7 +34,6 @@ client.connect((err) => {
       return console.error("error running query", err);
     }
     output(result);
-
 
     client.end();
   });

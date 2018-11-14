@@ -15,7 +15,6 @@ const knex = require('knex')({
 const firstName = process.argv[2];
 
 function output(rows) {
-  console.log()
   for (let i = 0; i < rows.length; i++) {
     let first = rows[i].first_name;
     let last = rows[i].last_name;
@@ -23,7 +22,7 @@ function output(rows) {
     let year = bod.getFullYear();
     let month = bod.getMonth();
     let day = bod.getDate();
-    let out = (i + 1) + ' ' + first + ' ' + last + ', born ' + year + '-' + month + '-' + day
+    let out = (i + 1) + ' ' + first + ' ' + last + ', born ' + year + '-' + month + '-' + day;
     console.log(out);
   }
 }
