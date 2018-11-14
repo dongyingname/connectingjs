@@ -8,7 +8,7 @@ const client = new pg.Client({
   port: settings.port,
   ssl: settings.ssl
 });
-
+console.log(settings);
 const firstName = process.argv[2];
 const q = `SELECT first_name, last_name, birthdate FROM famous_people WHERE first_name = '${firstName}';`;
 
